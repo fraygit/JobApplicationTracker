@@ -6,3 +6,6 @@ JobApplicationTracker.core/bin/
 JobApplicationTracker.core/obj/
 JobApplicationTracker.core/.vs/
 .vs/
+JobApplicationTracker.test/bin/
+JobApplicationTracker.test/obj/
+JobApplicationTracker.test/.vs/

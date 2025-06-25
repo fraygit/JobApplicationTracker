@@ -4,7 +4,7 @@ This project is an API for a Job Application Tracker system. It is designed to h
 
 ## Project Structure
 
-The solution is divided into two main layers:
+The solution is divided into three main layers:
 
 1. **API Layer**
    - Handles HTTP requests and responses.
@@ -13,6 +13,9 @@ The solution is divided into two main layers:
 2. **Data & Business Layer**
    - Contains the core business logic and data access code.
    - Responsible for processing application data, enforcing business rules, and interacting with the database or storage.
+
+3. **Test Layer**
+   - Contains the unit test code for the business layers.
 
 ## Assumptions
 
