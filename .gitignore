@@ -1,0 +1,8 @@
+# Ignore build output and user-specific files
+JobApplicationTracker.API/bin/
+JobApplicationTracker.API/obj/
+JobApplicationTracker.API/.vs/
+JobApplicationTracker.core/bin/
+JobApplicationTracker.core/obj/
+JobApplicationTracker.core/.vs/
+.vs/
