@@ -22,6 +22,7 @@ The solution is divided into three main layers:
 1. No authentication or authorization is required.
 2. Only in-memory database is used. Thus, persistence is only limited to the application's lifecycle.
 3. Swagger is used for API documentation and exposed publicly.
+4. No cross-origin restrictions are required.
 
 
 ## Getting Started
