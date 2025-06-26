@@ -32,5 +32,34 @@ namespace JobApplicationTracker.core.Repository
         {
             return await _context.Set<T>().ToListAsync();
         }
+
+        public async Task<PagedResult<T>> GetListAsync(int pageNumber, int pageSize)
+        {
+            return await GetListAsync(includeDeleted: false, pageNumber: pageNumber, pageSize: pageSize);
+        }
+
+        private async Task<PagedResult<T>> GetListAsync(bool includeDeleted, int pageNumber, int pageSize)
+        {
+            var query = _context.Set<T>().AsQueryable();
+
+            var totalCount = await query.CountAsync();
+            var results = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PagedResult<T>
+            {
+                Results = results,
+                TotalCount = totalCount,
+                PageSize = pageSize,
+                PageNumber = pageNumber
+            };
+        }
+    }
+
+    public class PagedResult<T>
+    {
+        public List<T> Results { get; set; }
+        public int TotalCount { get; set; }
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 }

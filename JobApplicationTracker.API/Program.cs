@@ -21,7 +21,10 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseCors(policy => policy.AllowAnyOrigin());
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseSwagger();
 app.UseSwaggerUI();

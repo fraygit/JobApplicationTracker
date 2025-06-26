@@ -46,7 +46,7 @@ namespace JobApplicationTracker.test
         {
             var jobApp = new JobApplication { Id = 1, Company = "TestCo", Position = "Dev", Status = ApplicationStatus.Offered, ApplicationDate = DateTime.UtcNow };
             _mockRepo.Setup(r => r.UpdateAsync(jobApp)).Returns(Task.CompletedTask);
-            await _service.UpdateAsync(jobApp);
+            await _service.UpdateAsync(jobApp.Id, jobApp);
             _mockRepo.Verify(r => r.UpdateAsync(jobApp), Times.Once);
         }
 

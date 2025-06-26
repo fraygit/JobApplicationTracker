@@ -15,10 +15,10 @@ namespace JobApplicationTracker.API.Controllers
             _jobApplicationService = jobApplicationService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("{pageNumber}/{pageSize}")]
+        public async Task<IActionResult> GetAll(int pageNumber, int pageSize)
         {
-            var applications = await _jobApplicationService.ListAllAsync();
+            var applications = await _jobApplicationService.GetListAsync(pageNumber, pageSize);
             return Ok(applications);
         }
 
@@ -27,6 +27,13 @@ namespace JobApplicationTracker.API.Controllers
         {
             var created = await _jobApplicationService.AddAsync(jobApplication);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] JobApplication jobApplication)
+        {
+            await _jobApplicationService.UpdateAsync(id, jobApplication);
+            return CreatedAtAction(nameof(GetById), new { id = jobApplication.Id }, jobApplication);
         }
 
         [HttpGet("{id}")]

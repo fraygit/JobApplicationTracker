@@ -14,5 +14,6 @@ namespace JobApplicationTracker.core.Repository
         Task UpdateAsync(T entity);
         Task<List<T>> ListAllAsync();
         Task<T> GetAsync(int id);
+        Task<PagedResult<T>> GetListAsync(int pageNumber, int pageSize);
     }
 }

@@ -24,9 +24,13 @@ namespace JobApplicationTracker.core.Services
             return _repository.ListAllAsync();
         }
 
-        public Task UpdateAsync(JobApplication jobApplication)
+        public async Task<JobApplication> UpdateAsync(int id, JobApplication jobApplication)
         {
-            return _repository.UpdateAsync(jobApplication);
+            var application = await _repository.GetAsync(id);
+            application.Status = jobApplication.Status;
+            application.Updated = DateTime.Now;
+            await _repository.UpdateAsync(application);
+            return application;
         }
 
         public Task<JobApplication> GetAsync(int id)
@@ -34,5 +38,9 @@ namespace JobApplicationTracker.core.Services
             return _repository.GetAsync(id);
         }
 
+        public Task<PagedResult<JobApplication>> GetListAsync(int pageNumber, int pageSize)
+        {
+            return _repository.GetListAsync(pageNumber, pageSize);
+        }
     }
 }
