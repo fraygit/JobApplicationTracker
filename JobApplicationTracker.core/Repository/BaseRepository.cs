@@ -13,6 +13,8 @@ namespace JobApplicationTracker.core.Repository
         public JobApplicationDbContext _context;
         public async Task<T> AddAsync(T entity)
         {
+            entity.Updated = DateTime.Now;
+            entity.Created = DateTime.Now;
             await _context.Set<T>().AddAsync(entity);
             var newId = await _context.SaveChangesAsync();
             return await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == newId);

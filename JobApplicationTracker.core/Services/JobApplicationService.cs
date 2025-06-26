@@ -16,6 +16,15 @@ namespace JobApplicationTracker.core.Services
 
         public Task<JobApplication> AddAsync(JobApplication jobApplication)
         {
+            if (jobApplication == null)
+                throw new ArgumentNullException(nameof(jobApplication));
+            if (string.IsNullOrWhiteSpace(jobApplication.Company))
+                throw new ArgumentException("Company must be provided.", nameof(jobApplication.Company));
+            if (string.IsNullOrWhiteSpace(jobApplication.Position))
+                throw new ArgumentException("Position must be provided.", nameof(jobApplication.Position));
+            if (jobApplication.ApplicationDate == default(DateTime))
+                throw new ArgumentException("ApplicationDate must be a valid date.", nameof(jobApplication.ApplicationDate));
+
             return _repository.AddAsync(jobApplication);
         }
 
